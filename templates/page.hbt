@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> {{ name }} </title>
+    <link rel="stylesheet" href="/css/markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>
+          <a href="/">Posts</a>
+        </li>
+        <li>
+          <a href="/about_me">About Me</a>
+        </li>
+      </ul>
+    </header>
+    <div> 
+      {{{ content }}}
+    </div>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>jsanchesleao</title>
+    <link rel="stylesheet" href="/css/markdown.css">
+    <link rel="stylesheet" href="/css/custom.css">
+  </head>
+  <body>
+    <header>
+      <ul>
+        <li>
+          <a href="/">Posts</a>
+        </li>
+        <li>
+          <a href="/about_me">About Me</a>
+        </li>
+      </ul>
+    </header>
+
+    <section>
+      <h2> Blog Posts </h2>
+      <ul>
+      {{#each posts }}
+        <li>{{formatDate this.date day="numeric" month="long" year="numeric"}}:
+        <a href="./posts/{{ this.filename }}">{{ this.title }}</a>
+        </li>
+      {{/each }}
+      </ul>
+    </section>
+    <footer>
+      <p>Built with node.js</p>
+    </footer>
+  </body>
+</html>
