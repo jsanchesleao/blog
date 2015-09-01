@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> {{ title }} </title>
+    <title> {{ post.title }} </title>
     <link rel="stylesheet" href="/css/markdown.css">
     <link rel="stylesheet" href="/css/hljs.default.css">
     <link rel="stylesheet" href="/css/custom.css">
@@ -20,7 +20,7 @@
       </ul>
     </header>
     <div id="post-content">
-      {{{ content }}}
+      {{{ post.content }}}
     </div>
   </body>
 </html>

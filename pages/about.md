@@ -1,5 +1,6 @@
 ---
 name: About Me
+template: page.hbt
 ---
 
 # This is me

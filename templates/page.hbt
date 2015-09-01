@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title> {{ name }} </title>
+    <title> {{ page.name }} </title>
     <link rel="stylesheet" href="/css/markdown.css">
     <link rel="stylesheet" href="/css/custom.css">
   </head>
@@ -17,7 +17,7 @@
       </ul>
     </header>
     <div> 
-      {{{ content }}}
+      {{{ page.content }}}
     </div>
   </body>
 </html>

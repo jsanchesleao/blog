@@ -22,7 +22,7 @@
       <ul>
       {{#each posts }}
         <li>{{formatDate this.date day="numeric" month="long" year="numeric"}}:
-        <a href="./posts/{{ this.filename }}">{{ this.title }}</a>
+        <a href="{{ this.url }}">{{ this.title }}</a>
         </li>
       {{/each }}
       </ul>
