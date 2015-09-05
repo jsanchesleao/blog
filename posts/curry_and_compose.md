@@ -4,6 +4,7 @@ lead: why you should use something like Ramda in your code
 template: post.hbt
 date: 2015-02-22
 tags: [static, blog]
+publish: true
 ---
 
 Curry and compose
