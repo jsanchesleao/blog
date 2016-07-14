@@ -10,7 +10,7 @@ publish: true
 Currying as a factory of functions
 -----------------
 
-In this post I would like to explore the use of a techique called `currying` to reduce some of the noise of using higher order functions such as `map`, `filter` and even `compose`.
+In this post I would like to explore the use of a techique called `currying` to reduce some of the noise of using higher order functions such as `map`, `filter` and similar functions..
 
 First of all, let's define what is currying, and we'll do so with examples. Imagine we have the following requirement: We need to count the oocurrencies of a given value inside an array. The traditional way of doing this in javascript would be something along these lines:
 
@@ -75,6 +75,18 @@ We can se more clearly now that our operation consists of three separate steps: 
 The code is more functional now, but we can still go further by changing the `countOcurrencies` function.
 
 ```javascript
+//old imperative version
+function countOcurrencies(array, item) {
+  let ocurrencies = 0;
+  for (let i = 0; i < array.length; i++) {
+    if (array[i] === item) {
+      ocurrencies = ocurrencies + 1;
+    }
+  }
+  return ocurrencies;
+}
+
+//refactored, more functional version
 function countOcurrencies(item, array) {
   return array.filter(i => i === item).length
 }
@@ -82,7 +94,7 @@ function countOcurrencies(item, array) {
 
 So again we removed the mutable part and the for loop. The entire solution now is a lot more functional, but to go even further we will explore the techique mentioned in the beginning: currying.
 
-Quick explanation: A function is said to be in the curried form if it accepts one single argument. If the function needs to work with two arguments, it will return another function that accepts the next and so on. Moving to the code, our `countOcurrencies` function would look like this:
+Quick explanation: A function is said to be in the curried form if it accepts one single argument. If the function needs to work with two arguments, it will return another function that accepts the next and so on. Back to the code, our `countOcurrencies` function would look like this:
 
 ```javascript
 const countOcurrencies = function(item) {
