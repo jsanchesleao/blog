@@ -1,10 +1,12 @@
 ---
-title: Hello World
+title: jsanchesleao's dev blog
 layout: home.njk
 ---
 
-# jsanchesleao's development journal
+![avatar](https://avatars.githubusercontent.com/u/990967)
 
-{% for post in collections.pages %}
-- [{{post.data.title}}]({{post.url}})
+# jsanchesleao
+
+{% for post in collections.posts %}
+- {{post.data.date | postDate}}: [{{post.data.title}}]({{post.url}})
 {% endfor %}

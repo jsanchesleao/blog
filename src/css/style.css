@@ -11,14 +11,82 @@ body {
 }
 
 main {
-  width: 80em;
-  margin: 0 auto;
+  max-width: 80em;
+  margin: 3em auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
-ul {
+main img {
+  width: 8em;
+  border-radius: 50%;
+  box-shadow: 0 0 5px black;
+}
+
+main h1 {
+  text-align: center;
+  font-size: 32px;
+  margin: .5em 0;
+}
+
+main h2 {
+  text-align: center;
+  font-size: 24px;
+  margin: .5em 0;
+}
+
+main > ul {
+  margin-top: 2em;
+  margin: 2em auto 0 auto;
   list-style: none;
+  text-align: center;
+  max-width: 60em;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+
+}
+
+main > ul > li {
+  margin: .2em 0;
+  text-align: left;
+  text-transform: capitalize;
+  width: 100%;
+
 }
 
 a {
-  color: black;
+  color: #616161;
+}
+
+article {
+  max-width: 50em;
+  background-color: #EEE;
+  padding: 0 3em;
+}
+
+article h4 {
+  text-align: center;
+  font-style: italic;
+  opacity: .6;
+}
+
+article p:first-of-type {
+  margin-top: 2em;
+}
+
+article p {
+  text-indent: 2em;
+  margin: .8em 0;
+}
+
+article pre {
+  white-space: pre-wrap;
+  background-color: #302c2c;
+  color: #CCC;
+  font-size: .8em;
+  padding: 1em;
 }
