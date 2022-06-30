@@ -1,7 +1,9 @@
 ---
 title: Hello World
-layout: base.njk
+layout: home.njk
 ---
+
+# jsanchesleao's development journal
 
 {% for post in collections.pages %}
 - [{{post.data.title}}]({{post.url}})
