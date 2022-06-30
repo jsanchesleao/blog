@@ -1,0 +1,23 @@
+{
+  "name": "blog-v2",
+  "version": "1.0.0",
+  "description": "This is another attempt at a blog",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx @11ty/eleventy",
+    "serve": "npx @11ty/eleventy --serve"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jsanchesleao/blog-v2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jsanchesleao/blog-v2/issues"
+  },
+  "homepage": "https://github.com/jsanchesleao/blog-v2#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.1"
+  }
+}
