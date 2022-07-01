@@ -39,10 +39,61 @@ function echo_drafts() {
   done
 }
 
-function do_add(){
+function do_add() {
   read -p "Post name: " name
-  sanitizedName=$(echo -e "$name" | tr '[:space:]' '_')
-  echo "POST is named $sanitizedName"
+  sanitizedName=$(echo -e "$name" | tr -d "\n" | tr '[:space:]' '_')
+  path="$basePath/src/posts/_draft_$sanitizedName.md"
+  if [ -f "$path" ]; then
+    echo "A draft with this name already exists"
+    exit 1
+  fi
+  echo "---
+title: $name
+date: $(date +%Y-%m-%d)
+draft: true
+---
+
+# $name
+
+#### $name
+" > "$path"
+  echo "Draft $path is created"
+  echo "Run blog edit to open it on an editor"
+}
+
+function do_publish() {
+  drafts=$(echo_drafts)
+  if [ ! -z "$1" ]; then
+    drafts=$(echo "$drafts" | grep "$1")
+  fi
+  if [ -z "$drafts" ]; then
+    echo "There are no drafts or the filter did not match anything. To create one, please run blog new"
+  fi
+  post=""
+  for draft in $drafts; do
+    if [ -z "$edit" ]; then
+      post="$draft"
+    else
+      post=$(echo "$drafts" | fzf)
+    fi
+  done
+  if [ -z "$post" ];then
+    echo "No draft selected"
+    exit 1
+  fi
+  publishedName=$(echo $post | sed "s/_draft/$(date +%Y-%m-%d)/")
+  cat $post | sed 's/draft: true/draft: false/' > $publishedName
+  rm "$post"
+  file=$(basename $publishedName)
+  echo "$file successfully published"
+  echo "To update online blog content, please run blog push"
+}
+
+function do_push() {
+  cd $basePath
+  git add .
+  git commit
+  git push
 }
 
 
@@ -54,10 +105,10 @@ case "$1" in
     do_add $2
     ;;
   publish)
-    echo "Publishing a post"
+    do_publish $2
     ;;
   push)
-    echo "Updating gh pages"
+    do_push
     ;;
   *)
     show_help
