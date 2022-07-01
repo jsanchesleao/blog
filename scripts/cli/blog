@@ -1,0 +1,55 @@
+#!/usr/bin/env bash
+
+toolPath=$(readlink -f $0)
+cliPath=$(dirname $toolPath)
+scriptsPath=$(dirname $cliPath)
+basePath=$(dirname $scriptsPath)
+
+function show_help() {
+  echo "Usage: blog [edit|new|push|publish]"
+}
+
+function do_edit() {
+  drafts=$(echo_drafts)
+  if [ -z "$drafts" ]; then
+    echo "There are no drafts. To create one, please run blog new"
+  fi
+  edit=""
+  for draft in $drafts; do
+    if [ -z "$edit" ]; then
+      edit="$draft"
+    else
+      edit=$(echo "$drafts" | fzf)
+    fi
+  done
+  nvim "$edit"
+}
+
+function echo_drafts() {
+  posts=$(find "$basePath/src/posts" -name '*.md')
+  for p in $posts; do
+    head $p | grep -q 'draft: true'
+    if [ $? -eq "0" ]; then
+      echo $p
+    fi
+  done
+}
+
+
+case "$1" in
+  edit)
+    do_edit
+    ;;
+  new)
+    echo "Creating new post"
+    ;;
+  publish)
+    echo "Publishing a post"
+    ;;
+  push)
+    echo "Updating gh pages"
+    ;;
+  *)
+    show_help
+    ;;
+esac
