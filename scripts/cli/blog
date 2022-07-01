@@ -1,16 +1,16 @@
 #!/usr/bin/env bash
 
-toolPath=$(readlink -f $0)
-cliPath=$(dirname $toolPath)
-scriptsPath=$(dirname $cliPath)
-basePath=$(dirname $scriptsPath)
+basePath=$BLOG_REPO_DIR
 
 function show_help() {
-  echo "Usage: blog [edit|new|push|publish]"
+  echo "Usage: blog [edit|add|push|publish]"
 }
 
 function do_edit() {
   drafts=$(echo_drafts)
+  if [ ! -z "$1" ]; then
+    drafts=$(echo "$drafts" | grep "$1")
+  fi
   if [ -z "$drafts" ]; then
     echo "There are no drafts. To create one, please run blog new"
   fi
@@ -22,6 +22,10 @@ function do_edit() {
       edit=$(echo "$drafts" | fzf)
     fi
   done
+  if [ -z "$edit" ];then
+    echo "No draft selected"
+    exit 1
+  fi
   nvim "$edit"
 }
 
@@ -35,13 +39,19 @@ function echo_drafts() {
   done
 }
 
+function do_add(){
+  read -p "Post name: " name
+  sanitizedName=$(echo -e "$name" | tr '[:space:]' '_')
+  echo "POST is named $sanitizedName"
+}
+
 
 case "$1" in
   edit)
-    do_edit
+    do_edit $2
     ;;
-  new)
-    echo "Creating new post"
+  add)
+    do_add $2
     ;;
   publish)
     echo "Publishing a post"
