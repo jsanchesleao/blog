@@ -49,12 +49,10 @@ function do_add() {
   fi
   echo "---
 title: $name
-date: $(date +%Y-%m-%d)
 draft: true
 ---
 
 # $name
-
 #### $name
 " > "$path"
   echo "Draft $path is created"
@@ -82,7 +80,8 @@ function do_publish() {
     exit 1
   fi
   publishedName=$(echo $post | sed "s/_draft/$(date +%Y-%m-%d)/")
-  cat $post | sed 's/draft: true/draft: false/' > $publishedName
+
+  cat $post | sed "s/draft: true/draft: false\ndate: $(date +%Y-%m-%d)/" > $publishedName
   rm "$post"
   file=$(basename $publishedName)
   echo "$file successfully published"
