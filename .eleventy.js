@@ -11,14 +11,20 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addShortcode('year', () => `${new Date().getFullYear()}`)
 
   eleventyConfig.addFilter('postDate', (dateObj) => {
+    if (!dateObj) {
+      return "Draft"
+    }
     return DateTime.fromJSDate(dateObj).toLocaleString(DateTime.DATE_MED)
   })
 
+  const now = new Date()
 
   eleventyConfig.addCollection("posts", (collection) => {
     return collection.getFilteredByGlob('./src/posts/*.md')
-      .filter(post => !post.data.draft)
-      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+      .filter(post => !post.data.draft || process.env.ALLOW_DRAFT === "true")
+      .sort((a, b) => {
+        (b.data.date || now).valueOf() - (a.data.date || now).valueOf()
+      })
   })
 
   return {

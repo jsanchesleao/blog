@@ -7,7 +7,7 @@
     "build": "npx @11ty/eleventy",
     "build-gh": "npx @11ty/eleventy --pathprefix=blog", 
     "push": "npm run build-gh && node src/ghpages.js",
-    "serve": "npx @11ty/eleventy --serve"
+    "serve": "ALLOW_DRAFT=true npx @11ty/eleventy --serve"
   },
   "repository": {
     "type": "git",
