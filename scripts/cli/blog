@@ -3,7 +3,7 @@
 basePath=$BLOG_REPO_DIR
 
 function show_help() {
-  echo "Usage: blog [edit|add|push|publish]"
+  echo "Usage: blog [edit|add|push|publish|serve]"
 }
 
 function do_edit() {
@@ -92,8 +92,15 @@ function do_push() {
   cd $basePath
   git add .
   git commit
+  git pull
   git push
   yarn push
+}
+
+function do_serve() {
+  cd $basePath
+  yarn
+  yarn serve
 }
 
 
@@ -109,6 +116,9 @@ case "$1" in
     ;;
   push)
     do_push
+    ;;
+  serve)
+    do_serve
     ;;
   *)
     show_help
