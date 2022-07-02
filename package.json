@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "npx @11ty/eleventy",
+    "build-gh": "npx @11ty/eleventy --pathprefix=blog", 
+    "push": "npm run build-gh && node src/ghpages.js",
     "serve": "npx @11ty/eleventy --serve"
   },
   "repository": {
@@ -19,6 +21,7 @@
   "homepage": "https://github.com/jsanchesleao/blog-v2#readme",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.1",
-    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0"
+    "@11ty/eleventy-plugin-syntaxhighlight": "^4.1.0",
+    "gh-pages": "^4.0.0"
   }
 }

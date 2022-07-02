@@ -93,6 +93,7 @@ function do_push() {
   git add .
   git commit
   git push
+  yarn push
 }
 
 

@@ -8,5 +8,5 @@ layout: home.njk
 # jsanchesleao
 
 {% for post in collections.posts %}
-- {{post.data.date | postDate}}: [{{post.data.title}}]({{post.url}})
+- {{post.data.date | postDate}}: [{{post.data.title}}](.{{post.url}})
 {% endfor %}
