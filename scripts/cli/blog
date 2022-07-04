@@ -3,7 +3,7 @@
 basePath=$BLOG_REPO_DIR
 
 function show_help() {
-  echo "Usage: blog [edit|add|push|publish|preview]"
+  echo "Usage: blog [edit|add|push|pull|publish|preview]"
 }
 
 function do_edit() {
@@ -103,6 +103,11 @@ function do_preview() {
   yarn serve
 }
 
+function do_pull() {
+  cd $basePath
+  git pull
+}
+
 
 case "$1" in
   edit)
@@ -116,6 +121,9 @@ case "$1" in
     ;;
   push)
     do_push
+    ;;
+  pull)
+    do_pull
     ;;
   preview)
     do_preview
